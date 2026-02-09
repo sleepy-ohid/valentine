@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aurna ❤️</title>
+
+<style>
+:root{ --pink:#ff2e63; }
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,
+  "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Shadow Background */
+.bg{
+  position:fixed;
+  inset:0;
+  background:url("shadow.jpg") center/cover no-repeat;
+  filter:brightness(.55);
+}
+
+/* Card */
+.card{
+  position:relative;
+  z-index:2;
+  width:min(92%,420px);
+  background:rgba(255,255,255,.95);
+  border-radius:28px;
+  padding:34px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.35);
+  animation:pop .6s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+h1{ font-size:38px; color:var(--pink); }
+p{ font-size:22px; color:#333; }
+
+.row{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+}
+
+button{
+  padding:16px 32px;
+  font-size:22px;
+  border:0;
+  border-radius:40px;
+  cursor:pointer;
+}
+
+.yes{
+  background:var(--pink);
+  color:white;
+}
+
+.no{
+  background:#e5e5e5;
+}
+
+.lock input{
+  width:100%;
+  font-size:24px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  letter-spacing:6px;
+}
+
+.topbar{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:3;
+}
+
+.music{
+  background:white;
+  border-radius:999px;
+  padding:10px 14px;
+}
+
+/* Photo */
+.photo{
+  width:100%;
+  border-radius:18px;
+  margin-top:14px;
+  transition:opacity 1s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="topbar">
+  <button class="music" id="musicBtn">🎵 Music</button>
+</div>
+
+<!-- PASSCODE -->
+<div class="card lock" id="lock">
+  <h1>Hey Baby 💓</h1>
+  <p>One tiny secret first...</p>
+  <input id="code" placeholder="####" maxlength="4">
+</div>
+
+<!-- MAIN -->
+<div class="card" id="main" hidden>
+  <h1>Sweetheart 🥺</h1>
+  <p>
+    Every time you smile, my brain forgets what it was doing...<br>
+    and my heart starts making plans.
+  </p>
+  <p><strong>Will you be my Valentine?</strong></p>
+
+  <div class="row">
+    <button class="yes" id="yes">Yes 😍</button>
+    <button class="no" id="no">No ☹️</button>
+  </div>
+</div>
+
+<!-- FINAL PAGE -->
+<div class="card" id="end" hidden>
+  <h1>Come here 🥰</h1>
+  <p>
+    I knew it.<br>
+    You're the thought I keep coming back to,<br>
+    the reason my nights feel warmer :)
+  </p>
+
+  <p><strong>Love you sweetie ❤️</strong></p>
+
+  <!-- PHOTO SWITCH -->
+  <img class="photo" id="finalPhoto" src="couple1.jpg">
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+</audio>
+
+<script>
+const PASSCODE="0404";
+
+const lock=document.getElementById("lock");
+const main=document.getElementById("main");
+const end=document.getElementById("end");
+const code=document.getElementById("code");
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const music=document.getElementById("music");
+const musicBtn=document.getElementById("musicBtn");
+
+/* Passcode */
+code.addEventListener("input",()=>{
+  if(code.value===PASSCODE){
+    lock.hidden=true;
+    main.hidden=false;
+  }
+});
+
+/* No button runs away */
+no.addEventListener("mouseover",()=>{
+  no.style.position="absolute";
+  no.style.left=Math.random()*60+"%";
+  no.style.top=Math.random()*60+"%";
+});
+
+/* YES CLICK */
+yes.addEventListener("click",()=>{
+  main.hidden=true;
+  end.hidden=false;
+
+  // Photo fade switch
+  setTimeout(()=>{
+    let img=document.getElementById("finalPhoto");
+    img.style.opacity="0";
+
+    setTimeout(()=>{
+      img.src="couple2.jpg";
+      img.style.opacity="1";
+    },500);
+
+  },3000);
+});
+
+/* Music toggle */
+let playing=false;
+
+musicBtn.onclick=()=>{
+  playing ? music.pause() : music.play();
+  playing=!playing;
+  musicBtn.textContent=playing?"⏸️ Music":"🎵 Music";
+};
+</script>
+
+</body>
+</html>
