@@ -18,6 +18,7 @@ body{
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,
   "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
   display:flex;
+  inset:0;
   align-items:center;
   justify-content:center;
 }
@@ -25,8 +26,8 @@ body{
 /* Shadow Background */
 .bg{
   position:fixed;
-  inset:0;
-  background:url("shadow.jpg") center/cover no-repeat;
+  
+  background:url("./shadow.jpg") center/cover no-repeat;
   filter:brightness(.55);
 }
 
@@ -149,7 +150,7 @@ button{
   <p><strong>Love you sweetie ❤️</strong></p>
 
   <!-- PHOTO SWITCH -->
-  <img class="photo" id="finalPhoto" src="couple1.jpg">
+  <img class="photo" id="finalPhoto" src="./couple1.jpg">
 </div>
 
 <!-- MUSIC -->
@@ -195,7 +196,7 @@ yes.addEventListener("click",()=>{
     img.style.opacity="0";
 
     setTimeout(()=>{
-      img.src="couple2.jpg";
+      img.src="./couple2.jpg";
       img.style.opacity="1";
     },500);
 
@@ -215,3 +216,4 @@ musicBtn.onclick=()=>{
 </body>
 
 </html>
+
